@@ -1,0 +1,21 @@
+-- The first time you login to execute this file with \i it may
+-- be convenient to change the working directory.
+
+
+-- 1) Creates database.						
+
+CREATE DATABASE larder
+WITH OWNER = postgres
+ENCODING = 'UTF8'
+CONNECTION LIMIT = -1;
+
+-- 2) Connects to database.
+
+\c larder postgres
+
+-- 3) Create table.
+
+CREATE TABLE public.recipes (
+recipe_name text NOT NULL,
+recipe_ingredients text NOT NULL,
+PRIMARY KEY (recipe_name);
