@@ -44,6 +44,9 @@ public class ClientHandler implements Runnable {
                 } else if (clientMessage.contains(", ")){
                     String reply = database.executeQuery(clientMessage);
                     outToClient.println(reply);
+                } else if (clientMessage.contains("*")){
+                    String reply = database.executeQuery(clientMessage);
+                    outToClient.println("Recipe deleted from DB");
                 }
             }
 

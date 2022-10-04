@@ -67,6 +67,24 @@ public class Database {
                 rs.close();
                 ps.close();
                 return output.toString();
+            } else if (clientMessage.contains("*")){
+                clientMessage = clientMessage.replaceAll(".$", "");
+
+                String sql = "DELETE FROM recipes WHERE recipe_name = '" + clientMessage + "';";
+
+                PreparedStatement ps = con1.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+
+                StringBuilder resultText = new StringBuilder();
+
+                while (rs.next()) {
+                    resultText.append(rs.getString(1));
+                }
+
+                rs.close();
+                ps.close();
+                con1.close();
+                return resultText.toString();
             }
         }catch(SQLException | ClassNotFoundException e){
             e.printStackTrace();

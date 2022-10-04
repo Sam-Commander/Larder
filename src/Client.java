@@ -4,12 +4,13 @@ import java.util.*;
 
 public class Client
 {
-    public final String MENU_TEMPLATE = " ~ Welcome to Larder (V2.0) ~\n" +
+    public final String MENU_TEMPLATE = " ~ Welcome to Larder (V2.1) ~\n" +
             "Enter the number of the menu item you wish to navigate to.\n" +
             "0. Exit\n" +
             "1. List recipes\n" +
             "2. Add recipe to database\n" +
-            "3. Construct a meal plan\n";
+            "3. Construct a meal plan\n" +
+            "4. Delete recipe from database\n";
 
     public static void main(String[] args) throws IOException {
 
@@ -118,6 +119,20 @@ public class Client
 
                     outToConsole(mealPlanDB);
                     check = true;
+                    break;
+
+                case "4":
+                    System.out.println("Enter the recipe name:");
+                    recipeName = inFromUser.readLine();
+                    String recipeToDelete = recipeName + "*";
+
+                    // Send message to the server
+                    outToServer.println(recipeToDelete);
+
+                    // Receive response from the server
+                    serverMessage = inFromServer.readLine();
+                    System.out.println(serverMessage);
+                    System.out.println("");
                     break;
             }
 
